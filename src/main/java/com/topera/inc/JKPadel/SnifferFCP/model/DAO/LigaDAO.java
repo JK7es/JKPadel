@@ -24,7 +24,7 @@ public interface LigaDAO {
 	
 	Optional<Liga> findById(Integer id);
 	
-	List<Liga> findByCategoria (String categoria);
-	
 	List<Liga> findAll();
+
+	List<Liga> findByTemporada(Integer temporada);
 }

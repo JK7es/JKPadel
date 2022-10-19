@@ -38,6 +38,33 @@ public class ObtenerLigaBusinessImpl implements ObtenerLigaBusiness{
 	public ObtenerLigaBusinessImpl() {}
 
 	@Override
+	public Integer ObtenerLigas(Integer anno) throws Exception {
+		logger.info("ObtenerLigaBusinessImpl :: ObtenerLigas :: ");
+		
+		Integer retorno = 0;
+		try {
+			
+			logger.info("================================");
+			logger.info("Obtenemos los datos de las LIGAS");
+						
+			List<Liga> ligas = ObtenerDatosLiga(anno);
+			
+			
+			logger.info(".:: Ligas recuperadas ::. " + ligas.size());
+			
+			ligaDAO.save(ligas);
+			
+			logger.info("================================");
+			retorno = ligas.size();
+			return retorno;
+		}
+		catch (Exception e) {
+			logger.error("Error al obtener los datos de las ligas (ObtenerLigas): " + e.getMessage());
+			throw e;
+		}
+	}
+	
+	@Override
 	public Integer ObtenerLigas() {
 		logger.info("ObtenerLigaBusinessImpl :: ObtenerLigas :: ");
 		
@@ -47,7 +74,7 @@ public class ObtenerLigaBusinessImpl implements ObtenerLigaBusiness{
 			logger.info("================================");
 			logger.info("Obtenemos los datos de las LIGAS");
 						
-			List<Liga> ligas = ObtenerDatosLiga();
+			List<Liga> ligas = ObtenerDatosLiga(null);
 			
 			
 			logger.info(".:: Ligas recuperadas ::. " + ligas.size());
@@ -64,12 +91,9 @@ public class ObtenerLigaBusinessImpl implements ObtenerLigaBusiness{
 		}
 	}
 	
-	public List<Liga> ObtenerDatosLiga() {
-		
+	public List<Liga> ObtenerDatosLiga(Integer anno) {
 	
 		logger.info("ObtenerDatosLigaBusinessImpl :: ObtenerDatosLiga :: ");
-		
-		
 		
 		try {
 			
@@ -86,6 +110,7 @@ public class ObtenerLigaBusinessImpl implements ObtenerLigaBusiness{
 			Elements ELigas = doc.select("form > select > option");
 			
 			for (Element htmlLiga : ELigas) {
+				
 				String ano = htmlLiga.select("option").get(0).val();
 				
 				String url2 = url + "?ano=" + ano;

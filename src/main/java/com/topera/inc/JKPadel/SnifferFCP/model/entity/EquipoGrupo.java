@@ -2,11 +2,15 @@ package com.topera.inc.JKPadel.SnifferFCP.model.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -31,13 +35,30 @@ public class EquipoGrupo implements Serializable{
 	@Column(name="id_sede")
 	Integer id_sede;
 	
-//	@LazyToOne(LazyToOneOption.NO_PROXY)
-//	@ManyToOne (fetch=FetchType.LAZY)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="id_equipo", referencedColumnName="id_equipo", nullable = false, updatable = false, insertable = false)
+	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+	private Equipo equipo;
+	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="id_grupo", referencedColumnName="id_grupo", nullable = false, updatable = false, insertable = false)
+	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+	private Grupo grupo;
+	
+	
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name="id_sede", referencedColumnName="id_sede", nullable = false, updatable = false, insertable = false)
+	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)	
+	private Sede sede;
+	
+		
+	
+//	@ManyToOne (fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
 //	@JoinColumn (name="id_equipo", referencedColumnName="id_equipo", insertable=false, updatable=false)
 //	private Equipo equipo;
-//	
+	
 //	@LazyToOne(LazyToOneOption.NO_PROXY)
-//	@ManyToOne (fetch=FetchType.LAZY)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
+//	@ManyToOne (fetch=FetchType.LAZY, cascade=CascadeType.PERSIST)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
 //	@JoinColumn (name="id_grupo", referencedColumnName="id_grupo", insertable=false, updatable=false)
 //	private Grupo grupo;
 //	
@@ -45,8 +66,6 @@ public class EquipoGrupo implements Serializable{
 //	@ManyToOne (fetch=FetchType.LAZY)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
 //	@JoinColumn (name="id_sede", referencedColumnName="id_sede", insertable=false, updatable=false)
 //	private Sede sede;
-	
-	
 			
 	public Integer getId_eq_gru() {
 		return id_eq_gru;
@@ -79,8 +98,5 @@ public class EquipoGrupo implements Serializable{
 	public void setId_sede(Integer id_sede) {
 		this.id_sede = id_sede;
 	}
-
-
-	
 
 }

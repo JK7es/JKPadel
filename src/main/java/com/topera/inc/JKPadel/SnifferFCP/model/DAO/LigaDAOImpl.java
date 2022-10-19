@@ -45,8 +45,8 @@ public class LigaDAOImpl implements LigaDAO{
 	}
 
 	@Override
-	public List<Liga> findByCategoria(String categoria) {
-		return repository.findByCategoria(categoria);
+	public List<Liga> findByTemporada(Integer temporada) {
+		return repository.findByTemporada(temporada);
 	}
 
 	@Override

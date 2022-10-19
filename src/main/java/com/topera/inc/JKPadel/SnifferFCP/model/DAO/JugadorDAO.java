@@ -36,5 +36,5 @@ public interface JugadorDAO {
 
 	void update(Jugador jugador);
 	
-	Optional<Jugador> findByName(String nombre, String apellido1, String apellido2);
+	List<Jugador> findByName(String nombre, String apellido1, String apellido2);
 }

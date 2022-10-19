@@ -49,4 +49,11 @@ public class EquipoDAOImpl implements EquipoDAO{
 		return repository.findAll();
 	}
 
+	@Override
+	public List<Equipo> findByAnno(Integer anno) {
+		return repository.findByAnno(anno);				
+	}
+	
+	
+
 }

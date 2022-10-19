@@ -19,4 +19,14 @@ public interface GrupoRepository extends JpaRepository<Grupo, Integer>{
 			)
 		List<Grupo> findByLiga (
 			@Param("idLiga") Integer idLiga);
+	
+	@Query(nativeQuery = true, value = 
+			  " SELECT * "
+			+ "	FROM grupos g, ligas l "
+			+ " WHERE g.id_liga = l.id_liga "
+			+ " AND l.temporada = :anno "
+			+ " ORDER BY g.genero, g.grupo"
+			)
+	List<Grupo> findByAnno(
+			@Param("anno") Integer anno);
 }

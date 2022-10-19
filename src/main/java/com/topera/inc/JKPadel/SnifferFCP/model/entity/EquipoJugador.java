@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
@@ -17,9 +20,8 @@ public class EquipoJugador implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id_eq_jug")
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_eq_jug")	
 	Integer id_eqJug; 	
 
 	@Column(name="id_equipo")
@@ -35,19 +37,19 @@ public class EquipoJugador implements Serializable{
 	Integer temporada;
 	
 //	@LazyToOne(LazyToOneOption.NO_PROXY)
-//	@ManyToOne (fetch=FetchType.LAZY)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
-//	@JoinColumn (name="id_equipo", referencedColumnName="id_equipo", insertable=false, updatable=false)
-//	private Equipo equipo;
+	@ManyToOne (fetch=FetchType.LAZY)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
+	@JoinColumn (name="id_equipo", referencedColumnName="id_equipo", insertable=false, updatable=false)
+	private Equipo equipo;
 //	
 //	@LazyToOne(LazyToOneOption.NO_PROXY)
-//	@ManyToOne (fetch=FetchType.LAZY)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
-//	@JoinColumn (name="id_jugador", referencedColumnName="id_jugador", insertable=false, updatable=false)
-//	private Jugador jugador;
+	@ManyToOne (fetch=FetchType.LAZY)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
+	@JoinColumn (name="id_jugador", referencedColumnName="id_jugador", insertable=false, updatable=false)
+	private Jugador jugador;
 //	
 //	@LazyToOne(LazyToOneOption.NO_PROXY)
-//	@ManyToOne (fetch=FetchType.LAZY)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
-//	@JoinColumn (name="id_liga", referencedColumnName="id_liga", insertable=false, updatable=false)
-//	private Liga liga;
+	@ManyToOne (fetch=FetchType.LAZY)	// NO se trae el objeto linkado a no ser que se haga una consulta expreso para ello (fetch)
+	@JoinColumn (name="id_liga", referencedColumnName="id_liga", insertable=false, updatable=false)
+	private Liga liga;
 	
 
 	public Integer getId_eqJug() {

@@ -62,6 +62,7 @@ public class ObtenerGruposBusinessImpl implements ObtenerGruposBusiness{
 			logger.info("Obtenemos los datos de los GRUPOS");
 			
 			List<Liga> ligas = ligaDAO.findAll();
+			
 //			List<Grupo> gruposT = new ArrayList<>();
 			Integer gruposRecuperados = 0;
 			
@@ -88,7 +89,45 @@ public class ObtenerGruposBusinessImpl implements ObtenerGruposBusiness{
 		}
 	}
 	
-	public List<Grupo> ObtenerGruposByLiga(Liga liga) {
+	@Override
+	public Integer ObtenerGrupos(Integer anno) throws Exception {
+		logger.info("ObtenerGruposBusinessImpl :: ObtenerGrupos :: ");
+		
+		try {
+			
+			logger.info("================================");
+			logger.info("Obtenemos los datos de los GRUPOS");
+			
+//			List<Liga> ligas = ligaDAO.findAll();
+			List<Liga> ligas = ligaDAO.findByTemporada(anno);
+			
+//			List<Grupo> gruposT = new ArrayList<>();
+			Integer gruposRecuperados = 0;
+			
+			for (Liga liga : ligas) {
+				
+				List<Grupo> grupos = ObtenerGruposByLiga(liga);
+//				gruposT.addAll(grupos);
+				grupoDAO.save(grupos);	
+				gruposRecuperados += grupos.size();
+				
+				logger.info(".:: Liga {} - Nº GRUPOS {} ::. ", liga.getTemporada(), grupos.size());
+			}
+			
+			logger.info(".:: GRUPOS TOTALES recuperados {}::. ", gruposRecuperados);
+//			grupoDAO.save(gruposT);			
+			
+			logger.info("=================================");
+			return gruposRecuperados;
+			
+		}
+		catch (Exception e) {
+			logger.error("Error al obtener los datos de los grupos (ObtenerGrupos): " + e.getMessage());
+			throw e;
+		}
+	}
+	
+	public List<Grupo> ObtenerGruposByLiga(Liga liga) throws Exception {
 		
 		logger.info("ObtenerGruposBusinessImpl :: ObtenerGruposByLiga :: {}-{}", liga.getTemporada(), liga.getC_categoria());
 		try {
@@ -141,12 +180,11 @@ public class ObtenerGruposBusinessImpl implements ObtenerGruposBusiness{
 		}
 		catch (Exception e) {
 			logger.error("Error al obtener los datos de los grupo por liga (ObtenerGrupos)s: " + e.getMessage());
-			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 	
-	private List<Grupo> trataGrupo(Integer anno, Integer idLiga, String genero, Elements EselOptions, Integer id_fase) {
+	private List<Grupo> trataGrupo(Integer anno, Integer idLiga, String genero, Elements EselOptions, Integer id_fase) throws Exception {
 		
 		try {
 			
@@ -184,8 +222,7 @@ public class ObtenerGruposBusinessImpl implements ObtenerGruposBusiness{
 		}
 		catch(Exception e) {
 			logger.error("Error al obtener los datos de los grupo por liga (ObtenerGrupos)s: " + e.getMessage());
-			e.printStackTrace();
-			return null;
+			throw e;
 		}		
 	}
 

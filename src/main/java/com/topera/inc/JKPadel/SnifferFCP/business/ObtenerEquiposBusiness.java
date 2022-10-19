@@ -4,4 +4,6 @@ public interface ObtenerEquiposBusiness {
 
 	public Integer ObtenerEquipos();
 
+	Integer ObtenerEquipos(Integer anno) throws Exception;
+
 }

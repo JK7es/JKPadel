@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.topera.inc.JKPadel.SnifferFCP.business.ObtenerDatosLigaBusiness;
+import com.topera.inc.JKPadel.api.LanzarSnifarFCPDTO;
+import com.topera.inc.JKPadel.util.BaseResponse;
 
 @Component("ObtenerDatosFacade")
 public class ObtenerDatosFacadeImpl implements ObtenerDatosFacade{
@@ -20,6 +22,7 @@ public class ObtenerDatosFacadeImpl implements ObtenerDatosFacade{
 		this.obtenerDatosLigaBusiness = obtenerDatosLigaBusiness;
 	}
 
+	@Override
 	public void obtenerDatosFCP() throws RuntimeException{
 		logger.info("ObtenerDatosFacadeImpl :: obtenerDatosFCP :: ");
 		
@@ -31,7 +34,8 @@ public class ObtenerDatosFacadeImpl implements ObtenerDatosFacade{
 			logger.info("<<<FIN Recuperaciondatos de las ligas de la web FCP.");
 		}
 		catch (Exception e) {
-			logger.error("Error al obtener los datos de la liga: " + e.getMessage());
+			logger.error("Error al obtener los datos de la FCP: " + e.getMessage());			
+			throw new RuntimeException();
 		}
 		
 	}
@@ -39,6 +43,24 @@ public class ObtenerDatosFacadeImpl implements ObtenerDatosFacade{
 	@Override
 	public void comrpobarDatos() {
 		logger.info("ObtenerDatosFacadeImpl :: comrpobarDatos :: ");
+		
+	}
+
+	@Override
+	public BaseResponse obtenerDatosFCP(LanzarSnifarFCPDTO lanzarSnifarFCPDTO) throws Exception{
+		
+		logger.info("ObtenerDatosFacadeImpl :: obtenerDatosFCP :: ");
+		
+		logger.info(">>>INICIO Recuperaciondatos de las ligas de la web FCP.");
+		
+		BaseResponse baseResponse = obtenerDatosLigaBusiness.ObtenerdatosFCP(lanzarSnifarFCPDTO.getAnno(), lanzarSnifarFCPDTO.isObtenerLicencias(), 
+																 lanzarSnifarFCPDTO.isObtenerGrupos(), lanzarSnifarFCPDTO.isObtenerEquipos(), 
+																 lanzarSnifarFCPDTO.isObtenerJugadores() );
+		
+		logger.info("<<<FIN Recuperaciondatos de las ligas de la web FCP.");
+		
+		return baseResponse;
+		
 		
 	}
 

@@ -74,8 +74,8 @@ public class EquipoJugadorDAOImpl  implements EquipoJugadorDAO{
 	}
 	
 	@Override
-	public List<EquipoJugador> findByAllIds(Integer idJugador, Integer idEquipo, Integer idLiga){
-		return repository.findByAllIds(idJugador, idEquipo, idLiga);
+	public List<EquipoJugador> findByAllIds(Integer idJugador, Integer idEquipo, Integer temporada){
+		return repository.findByAllIds(idJugador, idEquipo, temporada);
 	}
 
 	

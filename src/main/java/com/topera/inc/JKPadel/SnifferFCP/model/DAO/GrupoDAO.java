@@ -27,5 +27,7 @@ public interface GrupoDAO {
 	List<Grupo> findAll();
 	
 	List<Grupo> findByLiga(Integer id);
+	
+	List<Grupo> findByAnno(Integer anno);
 
 }

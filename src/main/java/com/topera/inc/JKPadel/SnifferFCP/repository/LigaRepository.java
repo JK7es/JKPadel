@@ -15,9 +15,9 @@ public interface LigaRepository extends JpaRepository<Liga, Integer>{
 	@Query(nativeQuery = true, value = 
 		  " SELECT * "
 		+ "	FROM ligas "
-		+ " WHERE id_liga = :categoria "
+		+ " WHERE temporada = :temporada "
 		)
-	List<Liga> findByCategoria (
-		@Param("categoria") String categoria);
+	List<Liga> findByTemporada (
+		@Param("temporada") Integer temporada);
 	
 }

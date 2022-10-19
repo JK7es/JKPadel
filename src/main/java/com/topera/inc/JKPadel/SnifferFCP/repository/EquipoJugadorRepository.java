@@ -24,17 +24,17 @@ public interface EquipoJugadorRepository extends JpaRepository<EquipoJugador, In
 */	
 	
 	@Query(nativeQuery = true, value = 
-		  " SELECT 1 "
+		  " SELECT * "
 		+ " FROM eq_jug "
 		+ " WHERE 1 = 1"
 		+ " AND id_jugador = :idJugador "
 		+ " AND id_equipo = :idEquipo "
-		+ " AND id_liga = :idLiga "
+		+ " AND temporada = :temporada "
 		)
 	List<EquipoJugador> findByAllIds(
 		@Param("idJugador") Integer idJugador,
 		@Param("idEquipo") Integer idEquipo, 
-		@Param("idLiga") Integer idLiga
+		@Param("temporada") Integer temporada
 		);
 			
 }

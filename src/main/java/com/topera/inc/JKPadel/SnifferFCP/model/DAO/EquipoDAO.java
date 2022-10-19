@@ -18,4 +18,6 @@ public interface EquipoDAO {
 	Optional<Equipo> findById(Integer id);
 	
 	List<Equipo> findAll();
+	
+	List<Equipo> findByAnno(Integer anno);
 }

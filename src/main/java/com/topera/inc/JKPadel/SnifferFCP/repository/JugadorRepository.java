@@ -70,7 +70,7 @@ public interface JugadorRepository extends JpaRepository<Jugador, Integer>{
 		+ " AND TRIM(apellido1) LIKE :apellido1 "
 		+ " AND TRIM(apellido2) LIKE :apellido2 "
 		)
-	Optional<Jugador> findByName (
+	List<Jugador> findByName (
 		@Param("nombre") String nombre,
 		@Param("apellido1") String apellido1,
 		@Param("apellido2") String apellido2);

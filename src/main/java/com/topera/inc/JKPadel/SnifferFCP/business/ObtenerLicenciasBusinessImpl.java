@@ -21,9 +21,9 @@ import com.topera.inc.JKPadel.SnifferFCP.service.SSLHelper;
 
 @Component
 @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = RuntimeException.class, timeout = 18000)
-public class ObtenerJugadoresBusinessImpl implements ObtenerJugadoresBusiness{
+public class ObtenerLicenciasBusinessImpl implements ObtenerLicenciasBusiness{
 
-	private static final Logger logger = LogManager.getLogger(ObtenerJugadoresBusinessImpl.class);
+	private static final Logger logger = LogManager.getLogger(ObtenerLicenciasBusinessImpl.class);
 
 	@Value("${jsoup.url.userAgent}")
 	private String userAgent;	
@@ -35,12 +35,12 @@ public class ObtenerJugadoresBusinessImpl implements ObtenerJugadoresBusiness{
 	@Autowired
 	private JugadorDAO jugadorDAO;
 	
-	public ObtenerJugadoresBusinessImpl() {
+	public ObtenerLicenciasBusinessImpl() {
 		
 	}
 
 	@Override
-	public Integer ObtenerJugadores() {
+	public Integer ObtenerJugadores() throws Exception {
 		
 		logger.info("ObtenerLicenciasBusinessImpl :: ObtenerJugadores :: ");
 		Integer retorno = 0;
@@ -62,15 +62,17 @@ public class ObtenerJugadoresBusinessImpl implements ObtenerJugadoresBusiness{
 			
 			logger.info("====================================");
 			retorno = jugadoresT.size();
+			
 			return retorno;
 		}
 		catch (Exception e) {
 			logger.error("Error al obtener los datos de los Jugadores (ObtenerJugadores): " + e.getMessage());
-			return null;
+			throw e;
 		}
 	}
 	
-	public List<Jugador> ObtenerLicenciasFEP(String genero) {
+	public List<Jugador> ObtenerLicenciasFEP(String genero) throws Exception {
+		
 		logger.info("ObtenerJugadoresBusinessImpl :: ObtenerLicenciasFEP :: ");
 		
 		try {
@@ -130,13 +132,12 @@ public class ObtenerJugadoresBusinessImpl implements ObtenerJugadoresBusiness{
 		}
 		catch (Exception e) {
 			logger.error("Error al obtener las licencias: " + e.getMessage());
-			e.printStackTrace();
-			return null;
+			throw e;
 		}
 	}
 	
 	
-	private Jugador separarNombreCompleto(int n_licencia, String nombreCompleto, String genero) {
+	private Jugador separarNombreCompleto(int n_licencia, String nombreCompleto, String genero) throws Exception {
 		
 		int posicion 	= 0;
 		String tAux		= "";
@@ -175,11 +176,11 @@ public class ObtenerJugadoresBusinessImpl implements ObtenerJugadoresBusiness{
 			
 		}catch(Exception e) {
 			logger.error("---->Error separarNombreCompleto ({}, {}, {})", n_licencia, nombreCompleto, genero , e);		    
-			return null;
+			throw e;
 		}
 	}
 	
-	private Jugador actualizarNombre(Jugador jg, int t_licencia, String t_nombreComp, String genero) {
+	private Jugador actualizarNombre(Jugador jg, int t_licencia, String t_nombreComp, String genero) throws Exception {
 		
 		try {
 			
@@ -204,7 +205,7 @@ public class ObtenerJugadoresBusinessImpl implements ObtenerJugadoresBusiness{
 			
 		}catch(Exception e) {
 			logger.error("Error updateando {} {} {} Licencia {}", jg.getNombre(), jg.getApellido1(), jg.getApellido2(), jg.getId_jugador(), e);
-			return null;
+			throw e;
 		}
 	}
 }

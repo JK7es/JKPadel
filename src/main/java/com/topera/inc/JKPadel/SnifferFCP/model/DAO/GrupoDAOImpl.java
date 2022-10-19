@@ -55,4 +55,9 @@ public class GrupoDAOImpl implements GrupoDAO{
 		return repository.findByLiga(id);
 	}
 
+	@Override
+	public List<Grupo> findByAnno(Integer anno) {
+		return repository.findByAnno(anno);
+	}
+
 }

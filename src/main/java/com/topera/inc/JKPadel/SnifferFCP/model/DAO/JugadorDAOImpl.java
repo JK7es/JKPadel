@@ -76,7 +76,7 @@ public class JugadorDAOImpl implements JugadorDAO{
 	}
 
 	@Override
-	public Optional<Jugador> findByName(String nombre, String apellido1, String apellido2) {
+	public List<Jugador> findByName(String nombre, String apellido1, String apellido2) {
 		return repository.findByName(nombre, apellido1, apellido2);
 	}
 }
