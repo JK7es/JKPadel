@@ -55,7 +55,7 @@ public class ObtenerDatosFacadeImpl implements ObtenerDatosFacade{
 		
 		BaseResponse baseResponse = obtenerDatosLigaBusiness.ObtenerdatosFCP(lanzarSnifarFCPDTO.getAnno(), lanzarSnifarFCPDTO.isObtenerLicencias(), 
 																 lanzarSnifarFCPDTO.isObtenerGrupos(), lanzarSnifarFCPDTO.isObtenerEquipos(), 
-																 lanzarSnifarFCPDTO.isObtenerJugadores() );
+																 lanzarSnifarFCPDTO.isObtenerJugadores(), lanzarSnifarFCPDTO.isObtenerJornadas());
 		
 		logger.info("<<<FIN Recuperaciondatos de las ligas de la web FCP.");
 		

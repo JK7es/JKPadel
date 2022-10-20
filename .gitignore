@@ -38,3 +38,4 @@ mvnw
 mvnw.cmd
 .mvn/wrapper/maven-wrapper.jar
 .mvn/wrapper/maven-wrapper.properties
+hs_err_pid22660.log
