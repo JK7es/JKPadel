@@ -14,15 +14,12 @@ public interface JornadaRepository extends JpaRepository<Jornada, Integer>{
 			  " SELECT * "
 			+ " FROM jornadas "
 			+ " WHERE id_liga = :idLiga "
-			+ " AND id_grupo = :idGrupo "
-			+ " AND id_fase = : idFase "
-			+ " AND id_equipo_local = :idLocal "
-			+ " AND id_equipo_visitante = :idVisitante"			
+//			+ " AND id_grupo = :idGrupo "
+//			+ " AND id_equipo_visitante = :idVisitante"			
 			)
 	Jornada findByPrimary(
-			@Param("idLiga") Integer idLiga, 
-			@Param("idGrupo") Integer idGrupo, 
-			@Param("idFase") Integer idFase, 
-			@Param("IdLocal") Integer idLocal, 
-			@Param("IdVisitante") Integer idVisitante);
+			@Param("idLiga") Integer idLiga 
+//			@Param("idGrupo") Integer idGrupo,
+//			@Param("IdVisitante") Integer idVisitante
+			);
 }

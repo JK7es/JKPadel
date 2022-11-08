@@ -5,6 +5,13 @@ import java.util.Optional;
 
 import com.topera.inc.JKPadel.SnifferFCP.model.entity.Jornada;
 
+/**
+ * 
+ * @author Josete
+ *
+ * DAO para la entidad Jornadas
+ */
+
 public interface JornadaDAO {
 
 	Jornada save (Jornada jornada);

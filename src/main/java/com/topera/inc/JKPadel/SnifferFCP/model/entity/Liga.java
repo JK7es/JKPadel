@@ -7,11 +7,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "LIGAS")   
+@Table(name = "LIGAS")
+@NamedQuery(name = "Liga.findAll", query = "SELECT a FROM Liga a")
 public class Liga implements Serializable{
 
 	private static final long serialVersionUID = 1L;

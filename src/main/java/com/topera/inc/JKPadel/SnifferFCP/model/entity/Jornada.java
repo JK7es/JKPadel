@@ -2,15 +2,11 @@ package com.topera.inc.JKPadel.SnifferFCP.model.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -31,71 +27,72 @@ public class Jornada {
 	
 	@Column(name="id_liga")
 	Integer id_liga;		
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="id_liga", referencedColumnName="id_liga", nullable = false, updatable = false, insertable = false)
-	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-	private Liga liga;
+//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name="id_liga", referencedColumnName="id_liga", nullable = false, updatable = false, insertable = false)
+//	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+//	private Liga liga;
 	
 	
 	@Column(name="id_grupo")
 	Integer id_grupo;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="id_grupo", referencedColumnName="id_grupo", nullable = false, updatable = false, insertable = false)
-	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-	private Grupo grupo;
+//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name="id_grupo", referencedColumnName="id_grupo", nullable = false, updatable = false, insertable = false)
+//	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+//	private Grupo grupo;
 
 	@Column(name="id_sede")
 	Integer id_sede;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="id_sede", referencedColumnName="id_sede", nullable = false, updatable = false, insertable = false)
-	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-	private Sede sede;
+//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name="id_sede", referencedColumnName="id_sede", nullable = false, updatable = false, insertable = false)
+//	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+//	private Sede sede;
 	
 	
 	@Column(name="id_equipo_local")
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="id_equipo_local", referencedColumnName="id_equipo", nullable = false, updatable = false, insertable = false)
-	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-	private Integer id_equipo_local;
+	Integer id_equipo_local;
+//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name="id_equipo_local", referencedColumnName="id_equipo", nullable = false, updatable = false, insertable = false)
+//	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
 	
 	
-	@Column(name="id_equipo_visitante")	
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name="id_equipo_visitante", referencedColumnName="id_equipo", nullable = false, updatable = false, insertable = false)
-	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)	
-	private Integer id_equipo_visitante;
 	
+	@Column(name="id_equipo_visitante")
+	Integer id_equipo_visitante;
+//	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//	@JoinColumn(name="id_equipo_visitante", referencedColumnName="id_equipo", nullable = false, updatable = false, insertable = false)
+//	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)	
+		
 	
 	@Column(name="partido")
-	private Integer partido;
+	Integer partido;
 	
 	@Column(name="n_jornada")
-	private Integer n_jornada;
+	Integer n_jornada;
 	
 	@Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
+    Date fecha;
 	
 	@Column(name="tandas")
-	private Integer tandas;
+	Integer tandas;
 	
 	@Column(name="juegos_win_local")
-	private Integer juegos_win_local;
+	Integer juegos_win_local;
 	
 	@Column(name="sets_win_local")
-	private Integer sets_win_local;
+	Integer sets_win_local;
 	
 	@Column(name="partidos_win_local")
-	private Integer partidos_win_local;
+	Integer partidos_win_local;
 	
 	@Column(name="juegos_win_visit")
-	private Integer juegos_win_visit;
+	Integer juegos_win_visit;
 	
 	@Column(name="sets_win_visit")
-	private Integer sets_win_visit;
+	Integer sets_win_visit;
 	
 	@Column(name="partidos_win_visit")
-	private Integer partidos_win_visit;
+	Integer partidos_win_visit;
 
 	
 	public Integer getId_jornada() {

@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.topera.inc.JKPadel.SnifferFCP.model.entity.Jornada;
 import com.topera.inc.JKPadel.SnifferFCP.repository.JornadaRepository;
 
+@Component
 public class JornadaDAOImpl implements JornadaDAO{
 	
 	private JornadaRepository repository;
@@ -56,6 +58,7 @@ public class JornadaDAOImpl implements JornadaDAO{
 	public Jornada findByPrimary(Integer idLiga, Integer idGrupo, Integer idFase, Integer IdLocal,
 								 Integer IdVisitante) {
 
-		return repository.findByPrimary(idLiga, idGrupo, idFase, IdLocal, IdVisitante);
+		return repository.findByPrimary(idLiga);
+//		return repository.findByPrimary(idLiga, idGrupo, idFase, IdLocal, IdVisitante);
 	}
 }
