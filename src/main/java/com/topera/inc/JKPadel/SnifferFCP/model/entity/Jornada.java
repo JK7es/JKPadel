@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -18,50 +20,55 @@ import javax.persistence.TemporalType;
 @NamedQuery(name = "Jornada.findAll", query = "SELECT a FROM Jornada a")
 public class Jornada {
 
-	
 	@Id
 	@Column(name="id_jornada")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	Integer id_jornada;
-	
 	
 	@Column(name="id_liga")
 	Integer id_liga;		
 //	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	@JoinColumn(name="id_liga", referencedColumnName="id_liga", nullable = false, updatable = false, insertable = false)
 //	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-//	private Liga liga;
-	
+	@ManyToOne
+	@JoinColumn(name = "liga_id_liga")
+	private Liga liga;
 	
 	@Column(name="id_grupo")
 	Integer id_grupo;
 //	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	@JoinColumn(name="id_grupo", referencedColumnName="id_grupo", nullable = false, updatable = false, insertable = false)
 //	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-//	private Grupo grupo;
+	@ManyToOne
+	@JoinColumn(name = "grupo_id_grupo")
+	private Grupo grupo;
 
 	@Column(name="id_sede")
 	Integer id_sede;
 //	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	@JoinColumn(name="id_sede", referencedColumnName="id_sede", nullable = false, updatable = false, insertable = false)
 //	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-//	private Sede sede;
-	
+	@ManyToOne
+	@JoinColumn(name = "sede_id_sede")
+	private Sede sede;
 	
 	@Column(name="id_equipo_local")
 	Integer id_equipo_local;
 //	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	@JoinColumn(name="id_equipo_local", referencedColumnName="id_equipo", nullable = false, updatable = false, insertable = false)
 //	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)
-	
-	
+	@ManyToOne
+	@JoinColumn(name = "equipoLoc_id_equipo")
+	private Equipo equipoLoc;
 	
 	@Column(name="id_equipo_visitante")
 	Integer id_equipo_visitante;
 //	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //	@JoinColumn(name="id_equipo_visitante", referencedColumnName="id_equipo", nullable = false, updatable = false, insertable = false)
 //	@org.hibernate.annotations.Cascade(value = org.hibernate.annotations.CascadeType.ALL)	
-		
+	@ManyToOne
+	@JoinColumn(name = "equipoVis_id_equipo")
+	private Equipo equipoVis;
 	
 	@Column(name="partido")
 	Integer partido;
